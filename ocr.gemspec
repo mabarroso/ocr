@@ -5,8 +5,8 @@ require "ocr/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "ocr"
-  s.version     = Ocr::VERSION
+  s.name        = "OCR"
+  s.version     = OCR::VERSION
   s.authors     = ["Miguel Adolfo Barroso"]
   s.email       = ["mabarroso@mabarroso.com"]
   s.homepage    = "https://github.com/mabarroso/ocr"

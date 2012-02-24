@@ -1,10 +1,11 @@
-#Ocr
+#OCR
  OCR web services gateway for Ruby.
 
 #Description
   Recognize text and characters from image files using web services.
 
 ##Web services
+  - [http://www.ocrwebservice.com/](http://www.ocrwebservice.com/)
 
 #Installation
 ##From the command line

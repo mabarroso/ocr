@@ -1,3 +1,3 @@
-module Ocr
-  VERSION = "0.0.1"
+module OCR
+  VERSION = "0.1.0"
 end
