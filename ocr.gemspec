@@ -5,7 +5,7 @@ require "ocr/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "OCR"
+  s.name        = "ocr"
   s.version     = OCR::VERSION
   s.authors     = ["Miguel Adolfo Barroso"]
   s.email       = ["mabarroso@mabarroso.com"]
@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
+
+  s.add_dependency 'savon', '>= 0.9.9'
 
   s.add_development_dependency "rspec", "~> 2.7.0"
 end

@@ -4,8 +4,11 @@
 #Description
   Recognize text and characters from image files using web services.
 
-##Web services
-  - [http://www.ocrwebservice.com/](http://www.ocrwebservice.com/)
+##Web services supported
+  - [OCR Web Service](http://www.ocrwebservice.com/)([Online OCR](http://www.onlineocr.net/))
+    * identify: Username and license code as password
+    * languages: :brazilian, :byelorussian, :bulgarian, :catalan, :croatian, :czech, :danish, :dutch, :english, :estonian, :finnish, :french, :german, :greek, :hungarian, :indonesian, :italian, :latin, :latvian, :lithuanian, :moldavian, :polish, :portuguese, :romanian, :russian, :serbian, :slovakian, :slovenian, :spanish, :swedish, :turkish, :ukrainian
+    * output formats: :doc, :pdf, :excel, :html, :txt, :rtf
 
 #Installation
 ##From the command line
