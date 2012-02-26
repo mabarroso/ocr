@@ -8,8 +8,6 @@ module OCR
     attr_accessor :convert_to_bw
 
     private
-    WSDL = 'http://www.ocrwebservice.com/services/OCRWebService.asmx?WSDL'
-
     def init
       super()
       self.language= :english
@@ -24,21 +22,21 @@ module OCR
         'license_code' => @password,
         'OCRWSInputImage' => {
           'fileName' => File.basename(@file),
-#          'fileData' => File.open(@file, 'rb') { |f| [f.read].pack('m*') }
+          'fileData' => File.open(@file, 'rb') { |f| [f.read].pack('m*') }
         },
-        'OCRWSSettings' => {
-          'ocrLanguages' => [self.language.to_s.upcase],
+        'OCRWSSetting' => {
+          'ocrLanguages' => self.language.to_s.upcase,
           'outputDocumentFormat' => self.format.to_s.upcase,
-          'convertToBW' => self.convert_to_bw,
-          'getOCRText' => true,
-          'createOutputDocument' => false,
-          'multiPageDoc' => false,
-          'ocrWords' => true
-        }
+          'convertToBW' => self.convert_to_bw.to_s,
+          'getOCRText' => true.to_s,
+          'createOutputDocument' => false.to_s,
+          'multiPageDoc' => false.to_s,
+          'ocrWords' => true.to_s
+        },
       }
 #puts request
 #return
-      client = Savon::Client.new(WSDL)
+      client = Savon::Client.new('http://www.ocrwebservice.com/services/OCRWebService.asmx?WSDL')
       response = client.request(:ocr_web_service_recognize) do
         soap.body = request
       end

@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency 'savon', '>= 0.9.9'
+  s.add_dependency 'soap4r-ruby1.9', '>= 2.0.3'
 
   s.add_development_dependency "rspec", "~> 2.7.0"
 end
