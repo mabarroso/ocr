@@ -7,7 +7,7 @@ module OCR
     attr_reader :text, :error
     attr_accessor :username, :password, :extra_login_data
     attr_accessor :proxy_addr, :proxy_port, :proxy_user, :proxy_pass
-    attr_accessor :file, :language, :format
+    attr_accessor :file, :outputfile, :language, :format
     attr_accessor :debug
 
     def initialize(*args)
