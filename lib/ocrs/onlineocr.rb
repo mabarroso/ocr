@@ -31,27 +31,32 @@ module OCR
           'getOCRText' => true.to_s,
           'createOutputDocument' => false.to_s,
           'multiPageDoc' => false.to_s,
-          'ocrWords' => true.to_s
+          'ocrWords' => false.to_s
         },
       }
-#puts request
-#return
+
+      unless debug
+        Savon.configure do |config|
+        #config.log = true           # enable logging
+         config.log = false          # disable logging
+         config.log_level = :error   # changing the log level
+         HTTPI.log = false           # to total silent the logging.
+        end
+      end
       client = Savon::Client.new('http://www.ocrwebservice.com/services/OCRWebService.asmx?WSDL')
       response = client.request(:ocr_web_service_recognize) do
         soap.body = request
       end
-puts
-puts "BODY: #{response.body}"
 
       return false if have_error? response.body
-puts 'sigue'
-      set_text !response[:ocr_text].nil? ? response[:ocr_text] : ''
+
+      set_text response[:ocr_web_service_recognize_response][:ocrws_response][:ocr_text][:array_of_string][:string]
     end
 
     def have_error? response
       return true && set_error("No response") unless response.has_key?(:ocr_web_service_recognize_response)
       return true && set_error("No response") unless response[:ocr_web_service_recognize_response].has_key?(:ocrws_response)
-      return true && set_error("No response") unless response[:ocr_web_service_recognize_response].has_key?(:ocrws_response)
+      return false unless response[:ocr_web_service_recognize_response][:ocrws_response].has_key?(:error_message)
       return false if response[:ocr_web_service_recognize_response][:ocrws_response][:error_message].nil?
       set_error response[:ocr_web_service_recognize_response][:ocrws_response][:error_message]
       true

@@ -8,6 +8,7 @@ module OCR
     attr_accessor :username, :password, :extra_login_data
     attr_accessor :proxy_addr, :proxy_port, :proxy_user, :proxy_pass
     attr_accessor :file, :language, :format
+    attr_accessor :debug
 
     def initialize(*args)
       init
@@ -21,6 +22,7 @@ module OCR
       file= false
       lang= false
       format= false
+      debug= false
     end
 
     def login username, password, extra_login_data = false
