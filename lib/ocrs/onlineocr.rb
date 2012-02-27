@@ -1,6 +1,4 @@
 require 'savon'
-require 'base64'
-
 
 module OCR
   class Onlineocr < OCR::Ocr

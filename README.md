@@ -9,6 +9,8 @@
     * identify: Username and license code as password
     * languages: :brazilian, :byelorussian, :bulgarian, :catalan, :croatian, :czech, :danish, :dutch, :english, :estonian, :finnish, :french, :german, :greek, :hungarian, :indonesian, :italian, :latin, :latvian, :lithuanian, :moldavian, :polish, :portuguese, :romanian, :russian, :serbian, :slovakian, :slovenian, :spanish, :swedish, :turkish, :ukrainian
     * output formats: :doc, :pdf, :excel, :html, :txt, :rtf
+  - [Free OCR online webservice](http://www.free-ocr.co.uk/)
+    * identify: Username
 
 #Installation
 ##From the command line
@@ -43,7 +45,7 @@ gem 'ocr'
   - Results: text = ocr.text unless ocr.error?
 
 ### OCR Web Service
-  [OCR Web Service](http://www.ocrwebservice.com/).
+  More info at [OCR Web Service](http://www.ocrwebservice.com/).
 
   Extra properties convert_to_bw=<BOOLEAN>, multi_page_doc=<BOOLEAN>.
 
@@ -54,6 +56,20 @@ gem 'ocr'
   ocr.file= 'text_image.jpg'
   ocr.format= :pdf
   ocr.outputfile= 'text_doc.pdf'
+  ocr.recognize
+
+  puts "ERROR: #{ocr.error}" if ocr.error?
+  puts "RESULT: #{ocr.text}" unless ocr.error?
+```
+
+### Free OCR online webservice
+  More info at [Free OCR online webservice](http://www.free-ocr.co.uk/).
+
+```ruby
+  ocr = OCR.use :free_ocr
+
+  ocr.login <YOUR_USER_NAME>
+  ocr.file= 'text_image.jpg'
   ocr.recognize
 
   puts "ERROR: #{ocr.error}" if ocr.error?
