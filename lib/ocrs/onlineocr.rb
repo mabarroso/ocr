@@ -5,7 +5,7 @@ require 'base64'
 module OCR
   class Onlineocr < OCR::Ocr
 
-    attr_accessor :convert_to_bw
+    attr_accessor :convert_to_bw, :multi_page_doc
 
     private
     def init
@@ -13,6 +13,7 @@ module OCR
       self.language= :english
       self.format= :txt
       self.convert_to_bw= false
+      self.multi_page_doc= false
     end
 
     def ocr_recognize
@@ -29,8 +30,8 @@ module OCR
           'outputDocumentFormat' => self.format.to_s.upcase,
           'convertToBW' => self.convert_to_bw.to_s,
           'getOCRText' => true.to_s,
-          'createOutputDocument' => false.to_s,
-          'multiPageDoc' => false.to_s,
+          'createOutputDocument' => outputfile?.to_s,
+          'multiPageDoc' => self.multi_page_doc.to_s,
           'ocrWords' => false.to_s
         },
       }
@@ -49,6 +50,12 @@ module OCR
       end
 
       return false if have_error? response.body
+
+      if outputfile?
+        File.open(outputfile, 'w+') {|f|
+          f.puts Base64.decode64(response[:ocr_web_service_recognize_response][:ocrws_response][:file_data])
+        }
+      end
 
       set_text response[:ocr_web_service_recognize_response][:ocrws_response][:ocr_text][:array_of_string][:string]
     end

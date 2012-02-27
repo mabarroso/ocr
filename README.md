@@ -43,13 +43,17 @@ gem 'ocr'
   - Results: text = ocr.text unless ocr.error?
 
 ### OCR Web Service
-  [OCR Web Service](http://www.ocrwebservice.com/)
+  [OCR Web Service](http://www.ocrwebservice.com/).
+
+  Extra properties convert_to_bw=<BOOLEAN>, multi_page_doc=<BOOLEAN>.
 
 ```ruby
   ocr = OCR.use :onlineocr
 
   ocr.login <YOUR_USER>, <YOUR_LICENSE_CODE>
   ocr.file= 'text_image.jpg'
+  ocr.format= :pdf
+  ocr.outputfile= 'text_doc.pdf'
   ocr.recognize
 
   puts "ERROR: #{ocr.error}" if ocr.error?

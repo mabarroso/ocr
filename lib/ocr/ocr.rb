@@ -22,6 +22,7 @@ module OCR
       file= false
       lang= false
       format= false
+      outputfile= false
       debug= false
     end
 
@@ -40,6 +41,10 @@ module OCR
 
     def error?
       @error != false
+    end
+
+    def outputfile?
+      outputfile != false
     end
 
     def recognize
