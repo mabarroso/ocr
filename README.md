@@ -11,6 +11,8 @@
     * output formats: :doc, :pdf, :excel, :html, :txt, :rtf
   - [Free OCR online webservice](http://www.free-ocr.co.uk/)
     * identify: Username
+    * No tested for images more than 100x100px in size.
+    * Free service is limited to 100x100px images.
 
 #Installation
 ##From the command line
@@ -63,7 +65,7 @@ gem 'ocr'
 ```
 
 ### Free OCR online webservice
-  More info at [Free OCR online webservice](http://www.free-ocr.co.uk/).
+  More info at [Free OCR online webservice](http://www.free-ocr.co.uk/). No tested for images larger than 100x100px. Free service is limited to 100x100px images.
 
 ```ruby
   ocr = OCR.use :free_ocr
