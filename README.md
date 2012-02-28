@@ -50,7 +50,7 @@ gem 'ocr'
 ### WeOCR project
   More info at [WeOCR project](http://weocr.ocrgrid.org/).
 
-  Extra properties outputencoding=<NAME>.
+  Extra properties outputencoding=NAME.
 
 ```ruby
   ocr = OCR.use :weocr
@@ -67,7 +67,7 @@ gem 'ocr'
 ### OCR Web Service
   More info at [OCR Web Service](http://www.ocrwebservice.com/).
 
-  Extra properties convert_to_bw=<BOOLEAN>, multi_page_doc=<BOOLEAN>.
+  Extra properties convert_to_bw=BOOLEAN, multi_page_doc=BOOLEAN.
 
 ```ruby
   ocr = OCR.use :onlineocr

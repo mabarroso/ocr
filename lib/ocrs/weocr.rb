@@ -1,13 +1,15 @@
 require 'net/http'
 require 'rexml/document'
+require 'nokogiri'
 
 module OCR
   class Weocr < OCR::Ocr
 
-    attr_accessor :outputencoding, :servers, :server_cgi
+    attr_accessor :outputencoding, :servers, :servers_info, :server_cgi
 
     def ocr_servers
       @servers = []
+      @servers_info = {}
       # Get OCR servers
       url = 'http://weocr.ocrgrid.org/cgi-bin/weocr/search.cgi?lang=&fmt=xml'
       xml_data = Net::HTTP.get(URI.parse(url))
@@ -35,33 +37,19 @@ module OCR
 
     def ocr_recognize
       raise Exception, 'No available OCR server' unless @server_cgi
-     res = `curl -F userfile=#{@file} \
+     res = `curl -F userfile=@#{@file} \
      -F outputencoding="#{outputencoding}" \
      -F outputformat="#{format.to_s}" \
-     #{@server_cgi}`
+     #{@server_cgi} 2>/dev/null`
 
-puts res
-return
-
-
-      return false if have_error? response.body
-
-      if outputfile?
-        File.open(outputfile, 'w+') {|f|
-          f.puts Base64.decode64(response[:ocr_web_service_recognize_response][:ocrws_response][:file_data])
-        }
-      end
-
-      set_text response[:ocr_web_service_recognize_response][:ocrws_response][:ocr_text][:array_of_string][:string]
+      doc = Nokogiri::HTML.parse(res)
+      err = doc.search('h2').first
+      return false if have_error? err.content if err
+      set_text doc.search('pre').first.content
     end
 
     def have_error? response
-      return true && set_error("No response") unless response.has_key?(:ocr_web_service_recognize_response)
-      return true && set_error("No response") unless response[:ocr_web_service_recognize_response].has_key?(:ocrws_response)
-      return false unless response[:ocr_web_service_recognize_response][:ocrws_response].has_key?(:error_message)
-      return false if response[:ocr_web_service_recognize_response][:ocrws_response][:error_message].nil?
-      set_error response[:ocr_web_service_recognize_response][:ocrws_response][:error_message]
-      true
+      return true && set_error(response) if response
     end
   end
 end
