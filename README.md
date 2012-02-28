@@ -5,6 +5,7 @@
   Recognize text and characters from image files using web services.
 
 ##Web services supported
+  - [WeOCR project](http://weocr.ocrgrid.org/)
   - [OCR Web Service](http://www.ocrwebservice.com/)([Online OCR](http://www.onlineocr.net/))
     * identify: Username and license code as password
     * languages: :brazilian, :byelorussian, :bulgarian, :catalan, :croatian, :czech, :danish, :dutch, :english, :estonian, :finnish, :french, :german, :greek, :hungarian, :indonesian, :italian, :latin, :latvian, :lithuanian, :moldavian, :polish, :portuguese, :romanian, :russian, :serbian, :slovakian, :slovenian, :spanish, :swedish, :turkish, :ukrainian
@@ -45,6 +46,23 @@ gem 'ocr'
   - Set output file: ocr.outputfile= <FILE_NAME_AND_PATH>
   - Test error: error = ocr.error if ocr.error?
   - Results: text = ocr.text unless ocr.error?
+
+### WeOCR project
+  More info at [WeOCR project](http://weocr.ocrgrid.org/).
+
+  Extra properties outputencoding=<NAME>.
+
+```ruby
+  ocr = OCR.use :weocr
+
+  ocr.file= 'text_image.jpg'
+  ocr.format= :txt
+  ocr.outputencoding="utf-8"
+  ocr.recognize
+
+  puts "ERROR: #{ocr.error}" if ocr.error?
+  puts "RESULT: #{ocr.text}" unless ocr.error?
+```
 
 ### OCR Web Service
   More info at [OCR Web Service](http://www.ocrwebservice.com/).

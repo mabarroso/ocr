@@ -1,4 +1,6 @@
 # OCR Change Log
+## OCR 0.3.0
+  - support WeOCR project http://weocr.ocrgrid.org/
 ## OCR 0.2.0
   - support Free OCR online webservice http://www.free-ocr.co.uk/
 ## OCR 0.1.2
