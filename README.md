@@ -6,6 +6,11 @@
 
 ##Web services supported
   - [WeOCR project](http://weocr.ocrgrid.org/)
+    * update WeOCR servers list
+    * autoselect server
+    * no identify
+    * languages: that's supported by server. TODO: select server by languaje requested.
+    * output formats: :txt
   - [OCR Web Service](http://www.ocrwebservice.com/)([Online OCR](http://www.onlineocr.net/))
     * identify: Username and license code as password
     * languages: :brazilian, :byelorussian, :bulgarian, :catalan, :croatian, :czech, :danish, :dutch, :english, :estonian, :finnish, :french, :german, :greek, :hungarian, :indonesian, :italian, :latin, :latvian, :lithuanian, :moldavian, :polish, :portuguese, :romanian, :russian, :serbian, :slovakian, :slovenian, :spanish, :swedish, :turkish, :ukrainian
@@ -37,13 +42,13 @@ gem 'ocr'
 ```
 
 ## Using
-  - Get a OCR: ocr = OCR.use <OCR_NAME>
-  - Set the login Credentials: ocr.login <YOUR_USER>, <YOUR_PASSWORD>, [<EXTRA_LOGIN_DATA>]
+  - Get a OCR: ocr = OCR.use OCR_NAME
+  - Set the login Credentials: ocr.login YOUR_USER, YOUR_PASSWORD, [EXTRA_LOGIN_DATA]
   - Set proxy configuration: ocr.proxy p_addr, p_port = nil, p_user = nil, p_pass = nil
-  - Set image to work: ocr.file= <FILE_NAME_AND_PATH>
-  - Set languaje: ocr.file= <FILE_NAME_AND_PATH>
-  - Set output format: ocr.format= <FORMAT_NAME>
-  - Set output file: ocr.outputfile= <FILE_NAME_AND_PATH>
+  - Set image to work: ocr.file= FILE_NAME_AND_PATH
+  - Set languaje: ocr.file= FILE_NAME_AND_PATH
+  - Set output format: ocr.format= FORMAT_NAME
+  - Set output file: ocr.outputfile= FILE_NAME_AND_PATH
   - Test error: error = ocr.error if ocr.error?
   - Results: text = ocr.text unless ocr.error?
 
