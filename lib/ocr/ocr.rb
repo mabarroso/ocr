@@ -52,7 +52,12 @@ module OCR
       clear_text
       return false && set_error("No file") if @file.nil?
       return false && set_error("File not exists '#{@file}'") unless File.exist?(@file)
-      ocr_recognize
+      begin
+        ocr_recognize
+      rescue Exception => msg
+        set_error msg
+        raise
+      end
     end
 
     private
