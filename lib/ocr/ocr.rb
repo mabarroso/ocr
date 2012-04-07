@@ -8,7 +8,7 @@ module OCR
     attr_accessor :username, :password, :extra_login_data
     attr_accessor :proxy_addr, :proxy_port, :proxy_user, :proxy_pass
     attr_accessor :file, :outputfile, :language, :format
-    attr_accessor :debug
+    attr_accessor :debug, :rescue_exceptions
 
     def initialize(*args)
       init
@@ -24,6 +24,11 @@ module OCR
       format= false
       outputfile= false
       debug= false
+      rescue_exceptions= true
+    end
+
+    def rescue_exceptions?
+      @rescue_exceptions != false
     end
 
     def login username, password, extra_login_data = false
@@ -56,7 +61,7 @@ module OCR
         ocr_recognize
       rescue Exception => msg
         set_error msg
-        raise
+        raise unless rescue_exceptions?
       end
     end
 
