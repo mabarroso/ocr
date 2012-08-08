@@ -1,5 +1,8 @@
 # OCR Change Log
 
+## OCR 0.3.1
+  - enable / disable auto rescue exceptions
+
 ## OCR 0.3.0
   - support WeOCR project http://weocr.ocrgrid.org/
 

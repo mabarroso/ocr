@@ -51,6 +51,7 @@ gem 'ocr'
   - Set output file: ocr.outputfile= FILE_NAME_AND_PATH
   - Test error: error = ocr.error if ocr.error?
   - Results: text = ocr.text unless ocr.error?
+  - Disable auto rescue exceptions: ocr.rescue_exceptions= false
 
 ### WeOCR project
   More info at [WeOCR project](http://weocr.ocrgrid.org/).
@@ -100,6 +101,10 @@ gem 'ocr'
   puts "ERROR: #{ocr.error}" if ocr.error?
   puts "RESULT: #{ocr.text}" unless ocr.error?
 ```
+
+## Credits
+
+* Thanks to @ylluminate for request auto rescue exception feature
 
 # License
 Released under the MIT license: [http://www.opensource.org/licenses/MIT](http://www.opensource.org/licenses/MIT)
